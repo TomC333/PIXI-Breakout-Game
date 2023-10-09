@@ -20,10 +20,31 @@ export class Musics{
         loop: false,
     });
 
+    static wallHittAudio = new Howl({
+        src: ['../src/musics/wallHitt.ogg'],
+        volume: 0.5,
+        loop: false,
+    });
+
+    static brickDestroyAudio = new Howl({
+        src: ['../src/musics/brickDestroy.ogg'],
+        volume: 1,
+        loop: false,
+    });
+
+    static paddleHitAudio = new Howl({
+        src: ['../src/musics/paddleHitt.ogg'],
+        volume: 1.0,
+        loop: false,
+    });
+
     private static stopAllSounds(){
             this.healthLostAudio.stop();
             this.gameLostAudio.stop();
             this.gameWinAudio.stop();
+            this.wallHittAudio.stop();
+            this.brickDestroyAudio.stop();
+            this.paddleHitAudio.stop();
     }
 
     static healthLost(){
@@ -42,9 +63,22 @@ export class Musics{
 
     static gameWin(){
         this.stopAllSounds();
-        if(!this.gameWinAudio.playing){
+        if(!this.gameWinAudio.playing()){
             this.gameWinAudio.play();
         }
     }
 
+    static wallHitt(){
+        this.wallHittAudio.play();
+    }
+
+    static brickDestroy(){
+       
+        this.brickDestroyAudio.play();
+        
+    }
+
+    static paddleHitt(){
+        this.paddleHitAudio.play();
+    }
 }

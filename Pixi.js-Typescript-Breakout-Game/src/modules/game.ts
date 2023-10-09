@@ -6,6 +6,7 @@ import { BrickPositionCalculator } from "./gameObjects/brick/brickPositionCalcul
 import { Paddle } from "./gameObjects/paddle";
 import { Layout } from "./layout";
 import * as PIXI from 'pixi.js';
+import { Musics } from "./musics";
 
 export class Game {
 
@@ -108,11 +109,26 @@ export class Game {
     }
 
     private isWallCollision(): number {
-        if (this.ball.Y - Layout.ball.radius <= Layout.game.startY) return Collisions.TOP;
-        if (this.ball.X - Layout.ball.radius <= Layout.game.startX || this.ball.X + Layout.ball.radius >= Layout.game.endX) return Collisions.SIDE;
-        if (this.ball.Y + Layout.ball.radius >= Layout.game.endY) return Collisions.BOTTOM;
 
-        return Collisions.NO_HIT;
+        let result = Collisions.NO_HIT;
+
+        if (this.ball.Y - Layout.ball.radius <= Layout.game.startY) {
+            result = Collisions.TOP;
+        }
+
+        if (this.ball.X - Layout.ball.radius <= Layout.game.startX || this.ball.X + Layout.ball.radius >= Layout.game.endX){
+            result = Collisions.SIDE;
+        }
+        
+        if (this.ball.Y + Layout.ball.radius >= Layout.game.endY){
+            result = Collisions.BOTTOM;
+        }
+
+        if(result !== Collisions.NO_HIT){
+            Musics.wallHitt();
+        }
+
+        return result;
     }
     // function returns true if game should stop
     private checkWallCollsion(): boolean {
@@ -143,7 +159,7 @@ export class Game {
         for (let i = 0; i < this.bricks.length; i++) {
 
             if (!this.bricks[i].IsAlive) continue;
-
+            
             let collision = this.bricks[i].checkCollision(this.ball);
             if (collision === Collisions.NO_HIT) continue;
 
@@ -151,11 +167,15 @@ export class Game {
             this.gameManager.stage.removeChild(this.bricks[i].getElement())
             this.bricks[i].destroyBrick();
             this.bricksCount--;
+            Musics.brickDestroy();
+
+
 
             switch (collision) {
                 case Collisions.SIDE:
                     this.ball.SpeedX = -this.ball.SpeedX;
                     break;
+                case Collisions.BASE:
                 case Collisions.TOP:
                 case Collisions.BOTTOM:
                     this.ball.SpeedY = -this.ball.SpeedY;
@@ -167,6 +187,8 @@ export class Game {
 
         const collision = this.paddle.checkCollision(this.ball);
         if (collision == Collisions.NO_HIT) return;
+
+        Musics.paddleHitt();
 
         if (this.ball.Y >= this.paddle.Y) {
             this.ball.setPosition(this.ball.X, this.paddle.Y + this.paddle.Height + this.ball.Radius * 2 + 1);
@@ -190,8 +212,7 @@ export class Game {
 
         this.drawBricks();
     }
-
-   
+  
     private resetHealts(): void{
         for(let i = 0; i < this.healthIcons.length; i++){
             this.healthIcons[i].visible = true;
@@ -201,7 +222,6 @@ export class Game {
     public set IsRunning(value: boolean){
         this.isRunning = value;
     }
-
     resetGame(): void {
         this.resetMainObjects();
         this.invokeBricks();

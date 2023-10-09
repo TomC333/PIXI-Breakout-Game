@@ -7,7 +7,7 @@ export class Ball {
     private speedY = Layout.ball.speedY;
     private graphics = new PIXI.Graphics();
     private ballDrawing: PIXI.Graphics;
-    speed: number = 1;
+    private speedMultiplicator: number = 1;
 
     private oldX: number = Layout.ball.startX;
     private oldY: number = Layout.ball.startY;
@@ -21,7 +21,10 @@ export class Ball {
         this.ballDrawing.zIndex = Layout.zIndexes.gameObjects;
 
         setInterval(() => {
-            this.speed *= Layout.ball.speedIncrement;
+            if(this.speedX > Layout.ball.maxSpeed || this.speedY > Layout.ball.maxSpeed){
+                return;
+            }
+            this.speedMultiplicator *= Layout.ball.speedIncrement;
         }, Layout.ball.speedIncrementTimeout);
 
         this.resetBall();
@@ -73,8 +76,8 @@ export class Ball {
         this.oldX = this.ballDrawing.x;
         this.oldY = this.ballDrawing.y;
 
-        this.ballDrawing.x += this.speed * this.speedX;
-        this.ballDrawing.y += this.speed * this.speedY;
+        this.ballDrawing.x += this.speedMultiplicator * this.speedX;
+        this.ballDrawing.y += this.speedMultiplicator * this.speedY;
     }
 
     public getElement(): PIXI.Graphics {
@@ -83,7 +86,7 @@ export class Ball {
     }
 
     public resetBall(): void {
-        this.speed = 1;
+        this.speedMultiplicator = 1;
         this.speedX = Layout.ball.speedX;
         this.speedY = Layout.ball.speedY;
 

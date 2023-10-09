@@ -25,6 +25,7 @@ export class GameManager {
             height: Layout.canvas.height,
             backgroundColor: Layout.canvas.color,
             antialias: true,
+
         });
         this.gameManager.stage.sortableChildren = true;
         document.body.appendChild(this.gameManager.view);
@@ -76,7 +77,6 @@ export class GameManager {
     }
 
     private startGame(): void {
-
         this.gameManager.view.addEventListener('click', () => {
 
             if(!this.isGameAdded){

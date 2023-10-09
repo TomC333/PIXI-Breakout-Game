@@ -77,19 +77,22 @@ export class Layout{
 
     static get ball() {
 
-        const minSpeed = 1;
-        const maxSpeed = 2;
-        const speed = Layout.randomNumber(minSpeed, maxSpeed);
+        const minStartingSpeed = 1;
+        const maxStartingSpeed = 3;
+        const speed = Layout.randomNumber(minStartingSpeed, maxStartingSpeed);
+        const radius = 5;
 
         return {
             startX: Layout.game.startX + Layout.game.width / 2,
             startY: Layout.game.startY + Layout.game.height / 2,
             speedX: Layout.randomBoolean(0.5) ? speed : -speed,
-            speedY: maxSpeed,
-            radius: 5,
+            speedY: maxStartingSpeed,
+            radius: radius,
             color: 'white',
             speedIncrement: 1.01,
-            speedIncrementTimeout: 100,
+            speedIncrementTimeout: 1000,
+            maxSpeed: 2 * radius + Layout.brick.height - 1,
+            
         }
     }
 
