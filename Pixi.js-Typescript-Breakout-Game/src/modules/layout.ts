@@ -50,7 +50,7 @@ export class Layout{
         startX: Layout.game.startX,
         startY: Layout.game.startY,
         backgroundColor: 0x0000FF,
-        backgroundVisibility: 0.4,
+        backgroundVisibility: 1,
 
     }
 
@@ -177,5 +177,13 @@ export class Layout{
         shakeMagnitude: 8,
         timeout: 300,
 
+    }
+
+    static healthIcon = {
+        scale: 0.1,
+        x: Layout.game.startX + 10,  
+        y: Layout.game.startY + 10,
+        diffX: 25,
+        color: '#FF0000',
     }
 }

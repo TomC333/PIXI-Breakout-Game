@@ -3,9 +3,9 @@ import { Layout } from './layout';
 import { Game } from './game';
 import { Gradient } from '../gradient';
 import { GameState } from './enums';
-import { Howl } from 'howler';
 import { Backgrounds } from '../backgrounds';
 import { DialogMenu } from './gameMenu/dialogMenu';
+import { Musics } from './musics';
 
 
 export class GameManager {
@@ -32,7 +32,6 @@ export class GameManager {
         this.initializeCanvasBG();
         this.initializeGameBackgroundAndGame();
         this.initializeDialogMenu();
-
     }
 
     private initializeDialogMenu(): void{
@@ -83,7 +82,6 @@ export class GameManager {
             if(!this.isGameAdded){
                 this.isGameAdded = true;
                 this.gameManager.ticker.add(this.game.startGame.bind(this.game));
-
             }
 
             if (!this.isRunning) {
@@ -94,30 +92,30 @@ export class GameManager {
                 this.isRunning = true;
             }
         });
-        // const backgroundAudio = new Howl({
-        //     src: ['../src/musics/background2.mp3'],
-        // });
-        // backgroundAudio.play();
     }
 
     private stopGame(gameState: number): void {
 
+        this.startShakeEffect();
+
         switch(gameState){
             case GameState.CONTINUE:
-                this.startShakeEffect();
                 this.updateCanvasBackground(GameState.CONTINUE);
                 this.dialogMenu.updateText(Layout.dialogTexts.continue);
                 this.game.continueGame();
+                Musics.healthLost();
                 break;
             case GameState.LOSE:
                 this.updateCanvasBackground(GameState.LOSE);
                 this.dialogMenu.updateText(Layout.dialogTexts.lost);
                 this.game.resetGame();
+                Musics.gameLost();
                 break;
             case GameState.WIN:
                 this.updateCanvasBackground(GameState.WIN);    
                 this.dialogMenu.updateText(Layout.dialogTexts.win); 
                 this.game.resetGame()
+
                 break;
         }
 
@@ -125,7 +123,7 @@ export class GameManager {
             this.gameManager.ticker.stop();
             this.isRunning = false;
         }, Layout.shake.timeout)
-        
+
         this.dialogMenu.toggleVisibility();
     }
 

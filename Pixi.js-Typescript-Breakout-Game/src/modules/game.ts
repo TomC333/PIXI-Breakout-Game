@@ -16,9 +16,11 @@ export class Game {
     private isRunning = false;
     private bricksCount = Layout.game.numberOfBrickRows * Layout.game.numberOfBricksPerRow;
     private livesCount = Layout.game.lives;
+    private healthIcons: PIXI.Sprite[] = [];
 
     constructor(private gameManager: PIXI.Application<HTMLCanvasElement>, private stopGameFunction: (gameState: number) => void, gameWindow: Gradient) {
 
+        this.initializeHealthIcons();
         this.initializeBricks();
         gameWindow.interactive = true;
 
@@ -47,6 +49,21 @@ export class Game {
                 possibleX = this.caclulateNewX(e);
             }
         });
+    }
+
+    private initializeHealthIcons(){
+    
+        for(let i = 0; i < this.livesCount; i++){
+            const healthIcon = PIXI.Sprite.from('/healthIcon.svg');
+            healthIcon.scale.set(Layout.healthIcon.scale);
+        
+            healthIcon.x = Layout.healthIcon.x + i * Layout.healthIcon.diffX;
+            healthIcon.y = Layout.healthIcon.y;
+            healthIcon.zIndex = Layout.zIndexes.gameObjects;
+        
+            this.healthIcons.push(healthIcon);
+            this.gameManager.stage.addChild(healthIcon);
+        }
     }
 
     private caclulateNewX(e: MouseEvent): number {
@@ -174,6 +191,13 @@ export class Game {
         this.drawBricks();
     }
 
+   
+    private resetHealts(): void{
+        for(let i = 0; i < this.healthIcons.length; i++){
+            this.healthIcons[i].visible = true;
+        }
+    }
+
     public set IsRunning(value: boolean){
         this.isRunning = value;
     }
@@ -181,6 +205,7 @@ export class Game {
     resetGame(): void {
         this.resetMainObjects();
         this.invokeBricks();
+        this.resetHealts();
         this.bricksCount = Layout.game.numberOfBrickRows * Layout.game.numberOfBricksPerRow;
         this.livesCount = Layout.game.lives;
     }
@@ -203,6 +228,7 @@ export class Game {
         if (this.checkWallCollsion()) {
             this.isRunning = false;
             this.livesCount--;
+            this.healthIcons[this.livesCount].visible = false;
             if (this.livesCount == 0) {
                 this.stopGameFunction(GameState.LOSE);
                 return;
