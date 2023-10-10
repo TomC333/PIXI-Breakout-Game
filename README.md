@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Toms343/PIXI-Breakout-Game)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Toms343/PIXI-Breakout-Game/blob/main/LICENSE)
 
-![Demo](https://github.com/Toms343/PIXI-Breakout-Game/images/breakout.gif)
+![Demo](https://github.com/Toms343/PIXI-Breakout-Game/blob/main/images/breakout.gif)
 
 ## Table of Contents 📜
 
