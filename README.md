@@ -9,7 +9,7 @@ The breakout game was one of my university projects during my first year. At the
 
 I used Stanford's library to implement most of the functionality, but there was one persistent bug where the ball would occasionally get stuck in the paddle. 🏓 Despite taking all possible deadline extensions, I couldn’t completely resolve the issue. Later, I discovered that this issue had already been addressed in the conditions provided by Stanford's library. 😅  
 
-Years later, while learning TypeScript and exploring libraries like Pixi.js, I decided to revisit and rewrite the breakout game. This time, I approached it as a way to deepen my understanding of TypeScript and modern development tools. I also applied new techniques to minimize the ball-and-paddle bug, though a few small issues still remain—making it a fun, nostalgic learning experience. 🚀  
+Years later, while learning TypeScript and exploring libraries like Pixi.js, I decided to revisit and rewrite the breakout game. This time, I approached it as a way to deepen my understanding of TypeScript and modern development tools. 🚀  
 
 
 ## Setup 🌱
