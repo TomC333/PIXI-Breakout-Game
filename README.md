@@ -3,24 +3,36 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Toms343/PIXI-Breakout-Game)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Toms343/PIXI-Breakout-Game/blob/main/LICENSE)
 
-## Background 🤯
+---
 
-The breakout game was one of my university projects during my first year. At the time, everything in computer science was new to me, and even writing simple programs was a challenge. This project, based on the original assignment (available [here](https://web.stanford.edu/class/cs106j/handouts/18-Assignment3.pdf)), was a significant hurdle.  
+## 🧠 Story
 
-I used Stanford's library to implement most of the functionality, but there was one persistent bug where the ball would occasionally get stuck in the paddle. 🏓 Despite taking all possible deadline extensions, I couldn’t completely resolve the issue. Later, I discovered that this issue had already been addressed in the conditions provided by Stanford's library. 😅  
+This breakout game was originally a university assignment from my first year, based on [Stanford’s CS106J project](https://web.stanford.edu/class/cs106j/handouts/18-Assignment3.pdf). At that time, everything in CS was new to me, and even simple programs felt overwhelming.
 
-Years later, while learning TypeScript and exploring libraries like Pixi.js, I decided to revisit and rewrite the breakout game. This time, I approached it as a way to deepen my understanding of TypeScript and modern development tools. 🚀  
+The original version used Stanford’s graphics library and had a persistent bug — the ball would sometimes get stuck in the paddle. Despite taking every possible deadline extension, I never fully fixed it. Later, I found that the fix was already buried in the library’s documentation. 😅
 
+Years later, while learning TypeScript and Pixi.js, I decided to rebuild the project from scratch. This rewrite helped me understand TypeScript, game loops, rendering, and other core web development concepts much more deeply. 🚀
 
-## Setup 🌱
+---
 
-The setup is as simple as it gets!
+## 🚀 How to Run
 
-1. If you haven't already, download and install Node.js and npm from [nodejs.org](https://nodejs.org/).
-2. Open your terminal/command prompt and Use the `cd` command to navigate to the directory where you cloned the Sorting Visualizer repository.
-3. Open a terminal and run `npm install` to install all the dependencies.
-4. After that, simply run `npm run dev` for a local development environment.
+> **Online version:** You can try the game instantly [here](https://pixi-breakout-game.vercel.app/)  
+> _(Note: Not responsive. Not ideal for mobile.)_
 
-If you just want to test the game , you can visit this [link](https://pixi-breakout-game.vercel.app/)
+If you'd like to run it locally:
 
-P.S Game is not responsive 😅 I don't recomend it for phone users 🤯
+1. Install **Node.js** and **npm** from [nodejs.org](https://nodejs.org/)
+2. Clone this repository  
+   ```bash
+   git clone https://github.com/Toms343/PIXI-Breakout-Game.git
+   cd PIXI-Breakout-Game
+   ```
+3. Install dependencies
+   ```bash
+   npm install
+   ```
+4. Start the dev server
+   ```bash
+   npm run dev
+   ```
