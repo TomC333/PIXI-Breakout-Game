@@ -18,17 +18,17 @@ Years later, while learning TypeScript and Pixi.js, I decided to rebuild the pro
 
 If you'd like to run it locally:
 
-1. Install **Node.js** and **npm** from [nodejs.org](https://nodejs.org/)
-2. Clone this repository  
+📍 Install **Node.js** and **npm** from [nodejs.org](https://nodejs.org/)
+📍 Clone this repository  
 ```bash
 git clone https://github.com/Toms343/PIXI-Breakout-Game.git
 cd PIXI-Breakout-Game
 ```
-3. Install dependencies
+📍 Install dependencies
 ```bash
 npm install
 ```
-4. Start the dev server
+📍 Start the dev server
 ```bash
 npm run dev
 ```
